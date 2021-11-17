@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs') %>
+
+    <body>
+        <%- include('partials/navbar.ejs', { currentLocation: "Timetable" }) %>
+
+        <div class="container-fluid px-lg-5 pb-3 my-2">
+            <a class="btn-link active p-2 click" data-bs-toggle="modal" data-bs-target="#weekSelector">Week <%= week %></a>
+        </div>
+
+        <div class="modal fade" id="weekSelector" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Currently on Week <%= week %>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <% for( let index = 1; index <= 23; index++ ) { %>
+                                <a href="/timetable/<%= id %>/<%= index %>">
+                                    <div class="m-1 week-number d-flex justify-content-center align-items-center">
+                                        <span><%= index %></span>
+                                    </div>
+                                </a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid d-lg-none">
+            <ul class="nav justify-content-between pb-3" id="dayTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link <% if (today == 1 || today >= 6) { %>active<% } %>" id="monday-tab"
+                        data-bs-toggle="tab" href="#monday" role="tab">Mon</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if (today == 2) { %>active<% } %>" id="tuesday-tab" data-bs-toggle="tab"
+                        href="#tuesday" role="tab">Tue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if (today == 3) { %>active<% } %>" id="wednesday-tab" data-bs-toggle="tab"
+                        href="#wednesday" role="tab">Wed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if (today == 4) { %>active<% } %>" id="thursday-tab" data-bs-toggle="tab"
+                        href="#thursday" role="tab">Thu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if (today == 5) { %>active<% } %>" id="friday-tab" data-bs-toggle="tab"
+                        href="#friday" role="tab">Fri</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="dayTabContent">
+                <div class="tab-pane fade <% if (today == 1 || today >= 6) { %>show active<% } %>" id="monday"
+                    role="tabpanel">
+                    <% Monday.forEach(element=> { %>
+                        <%- include("partials/timetable_item.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="tab-pane fade <% if (today == 2) { %>show active<% } %>" id="tuesday" role="tabpanel">
+                    <% Tuesday.forEach(element=> { %>
+                        <%- include("partials/timetable_item.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="tab-pane fade <% if (today == 3) { %>show active<% } %>" id="wednesday" role="tabpanel">
+                    <% Wednesday.forEach(element=> { %>
+                        <%- include("partials/timetable_item.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="tab-pane fade <% if (today == 4) { %>show active<% } %>" id="thursday" role="tabpanel">
+                    <% Thursday.forEach(element=> { %>
+                        <%- include("partials/timetable_item.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="tab-pane fade <% if (today == 5) { %>show active<% } %>" id="friday" role="tabpanel">
+                    <% Friday.forEach(element=> { %>
+                        <%- include("partials/timetable_item.ejs", element) %>
+                            <% }) %>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid px-5 d-none d-lg-block">
+            <div class="row row-cols-5">
+                <div class="col">
+                    <div class="text-center btn-link py-2 my-3 <% if (today == 1) { %>show active<% } %>">
+                        Monday
+                    </div>
+                    <% Monday.forEach(element=> { %>
+                        <%- include("partials/timetable_item_lg.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="col">
+                    <div class="text-center btn-link py-2 my-3 <% if (today == 2) { %>show active<% } %>">
+                        Tuesday
+                    </div>
+                    <% Tuesday.forEach(element=> { %>
+                        <%- include("partials/timetable_item_lg.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="col">
+                    <div class="text-center btn-link py-2 my-3 <% if (today == 3) { %>show active<% } %>"
+                        >Wednesday
+                    </div>
+                    <% Wednesday.forEach(element=> { %>
+                        <%- include("partials/timetable_item_lg.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="col">
+                    <div class="text-center btn-link py-2 my-3 <% if (today == 4) { %>show active<% } %>">
+                        Thursday
+                    </div>
+                    <% Thursday.forEach(element=> { %>
+                        <%- include("partials/timetable_item_lg.ejs", element) %>
+                            <% }) %>
+                </div>
+                <div class="col">
+                    <div class="text-center btn-link py-2 my-3 <% if (today == 5) { %>show active<% } %>">
+                        Friday
+                    </div>
+                    <% Friday.forEach(element=> { %>
+                        <%- include("partials/timetable_item_lg.ejs", element) %>
+                            <% }) %>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs') %>
+
+    <body>
+        <%- include('partials/navbar.ejs', { currentLocation: "Settings" }) %>
+
+        <div class="container-fluid px-5">
+            <form id="settings">
+                <label for="dundeeId" class="form-label">Dundee Student ID</label>
+                <input type="number" class="form-control mb-2" id="dundeeId">
+
+                <button type="submit" class="btn btn-secondary">Save settings</button>
+            </form>
+        </div>
+
+        <script src="/js/settings.js"></script>
+    </body>
+
+</html>

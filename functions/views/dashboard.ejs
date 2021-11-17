@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('partials/head.ejs') %>
+
+    <body>
+        <%- include('partials/navbar.ejs', { currentLocation: "Dashboard" }) %>
+
+        <div class="container-fluid px-lg-5">
+            <div class="row gy-2">
+                <%- include('partials/button.ejs', {
+                    title: "Timetable",
+                    colour: "#7699D4",
+                    icon: "calendar-event",
+                    link: "",
+                    id: "timetable",
+                    external: false
+                }) %>
+                <%- include('partials/button.ejs', {
+                    title: "eVision",
+                    colour: "#59656F",
+                    icon: "gauge",
+                    link: "https://evision.dundee.ac.uk/",
+                    id: "evision",
+                    external: true
+                }) %>
+                <%- include('partials/button.ejs', {
+                    title: "Library",
+                    colour: "#374A67",
+                    icon: "book",
+                    link: "https://dundee.primo.exlibrisgroup.com/discovery/search?vid=44DUN_INST:dun&lang=en",
+                    id: "library",
+                    external: true
+                }) %>
+
+            </div>
+        </div>
+
+        <script src="/js/dashboard.js"></script>
+
+    </body>
+
+</html>

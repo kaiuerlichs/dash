@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('partials/head.ejs') %>
+
+    <body class="vh-100">
+        <div class="container-fluid h-100">
+            <div class="row h-100 d-flex align-items-center">
+                <div class="col-12 col-sm-4 offset-sm-4 text-center">
+                    <form class="row" id="login">
+                        <div class="col-11">
+                            <div class="mb-2 form-floating">
+                                <input class="form-control" type="email" name="email" placeholder="name@example.com">
+                                <label for="email" class="form-label">Email address</label>
+                            </div>
+                            <div class="mb-2 form-floating">
+                                <input class="form-control" type="password" name="password" placeholder="********">
+                                <label for="password" class="form-label">Password</label>
+                            </div>
+                        </div>
+                        <div class="col-1 d-flex align-items-center justify-content-end">
+                            <button class="btn fs-3 btn-link p-0"><i class="ti ti-key"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/login.js"></script>
+    </body>
+
+</html>

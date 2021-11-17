@@ -1,0 +1,68 @@
+<% 
+var getHue = function(str) {
+    var hash = 0;
+    if (str.length === 0) return hash;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        hash = hash & hash;
+    }
+	var value = hash % 360
+
+    if(value <= 0) {
+        value = 360 + value
+    }
+    return value
+} 
+
+var getGradient = function(str) {
+    const c1 = getHue(str)
+    const c2 = c1 + 20
+
+    return "background: linear-gradient(20deg, hsl("+c1+",75%,70%,1), hsl("+c2+",75%,70%,1) 100%);"
+}
+
+%>
+
+<a class="click" data-bs-toggle="modal" data-bs-target="#item-lg-<%= count %>">
+    <div class="timetable-item p-3 my-2 text-light" style="<%= getGradient(module + module_code) %>">
+        <div class="d-flex">
+            <div class="flex-grow-1 text-truncate ">
+                <h5 class="m-0"><%= module_code %></h5>
+                <span class="timetable-text"><%= module %></span>
+            </div>
+            <div>
+                <% if (online===true) { %>
+                    <i class="fs-5 ti ti-device-laptop"></i>
+                <% } else { %>
+                    <i class="fs-5 ti ti-building"></i>
+                <% } %>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="timetable-text"><i class="ti ti-clock"></i> <%= start %> - <%= end %></span>
+            </div>
+            <div>
+                <span class="timetable-text"><i class="ti ti-school"></i> <%= type %></span>
+            </div>
+        </div>
+    </div>
+</a>
+
+<div class="modal fade" id="item-lg-<%= count %>" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><%= module_code %></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <span><i class="ti ti-clock"></i> <%= start %> - <%= end %></span><br>
+            <span><i class="ti ti-school"></i> <%= type %></span><br>
+            <span><i class="ti ti-location"></i> <%= location %></span><br>
+            <span><i class="ti ti-id"></i> <%= staff %></span><br><br>
+            <span><i class="ti ti-code"></i> <%= event_code %></span>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,16 @@
+<div class="col-6 col-lg-2">
+    <a id="<%= id %>" href="<%= link %>" <% if (external===true) { %>
+        target="_blank"
+        <% } %>>
+        <div class="py-4 px-4 button-area">
+            <div class="pb-2">
+                <div class="button-icon" style="background-color: <%= colour %>;">
+                    <i class="fs-4 ti ti-<%= icon %>"></i>
+                </div>
+            </div>
+            <h5 class="text-secondary">
+                <%= title %>
+            </h5>
+        </div>
+    </a>
+</div>
